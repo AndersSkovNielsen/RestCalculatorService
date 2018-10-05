@@ -14,12 +14,13 @@ namespace RESTCalculatorConsumer
         Multiply,
         Divide
     }
+
     class Program
     {
         private const string CalculatorUri = "http://localhost:59226/api/Calculator/";
-        private CalculationType Type;
 
-        //Consumer virker ikke ved almindelig start. Start service individuelt via Debug > New Instance først, derefter consumer.
+        //Consumer virker ikke ved almindelig start, af en eller anden grund.
+        //Start service individuelt via Debug > New Instance først, derefter consumer på samme måde.
         static void Main(string[] args)
         {
             Data d = new Data(25, 7);
@@ -63,6 +64,5 @@ namespace RESTCalculatorConsumer
                 return str;
             }
         }
-
     }
 }
