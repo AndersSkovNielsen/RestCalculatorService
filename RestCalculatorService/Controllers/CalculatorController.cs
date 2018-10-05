@@ -28,11 +28,32 @@ namespace RestCalculatorService.Controllers
         
         // POST: api/Calculator
         [HttpPost("Add", Name = "Add")]
-        public int Post([FromBody]Data data)
+        public int PostAdd([FromBody]Data data)
         {
             return data.A + data.B;
         }
-        
+
+        // POST: api/Calculator
+        [HttpPost("Subtract", Name = "Subtract")]
+        public int PostSubtract([FromBody]Data data)
+        {
+            return data.A - data.B;
+        }
+
+        // POST: api/Calculator
+        [HttpPost("Multiply", Name = "Multiply")]
+        public int PostMultiply([FromBody]Data data)
+        {
+            return data.A * data.B;
+        }
+
+        // POST: api/Calculator
+        [HttpPost("Divide", Name = "Divide")]
+        public int PostDivide([FromBody]Data data)
+        {
+            return data.A / data.B;
+        }
+
         // PUT: api/Calculator/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)

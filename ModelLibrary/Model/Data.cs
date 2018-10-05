@@ -31,5 +31,10 @@ namespace ModelLibrary.Model
             _a = a;
             _b = b;
         }
+
+        public override string ToString()
+        {
+            return $"{_a},{_b}";
+        }
     }
 }
