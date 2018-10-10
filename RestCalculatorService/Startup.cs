@@ -23,6 +23,9 @@ namespace RestCalculatorService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Tilføj CORS (ALTID FØR MVC!)
+            //CORS hentes via NuGet
+            services.AddCors();
             services.AddMvc();
         }
 
@@ -33,6 +36,14 @@ namespace RestCalculatorService
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //Igen, CORS FØR MVC!
+            //CORS hentes via NuGet
+            //Tillad alle handlinger fra alle
+            app.UseCors(options => options.AllowAnyMethod().AllowAnyOrigin());
+
+            //Tillad Get og Put fra alle
+            //app.UseCors(options => options.WithMethods("GET", "PUT").AllowAnyOrigin());
 
             app.UseMvc();
         }

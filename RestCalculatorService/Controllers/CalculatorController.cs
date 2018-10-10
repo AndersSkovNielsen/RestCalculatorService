@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using ModelLibrary;
 using ModelLibrary.Model;
 
 namespace RestCalculatorService.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Calculator")]
+    [Route("api/Calculator/")]
     public class CalculatorController : Controller
     {
         // GET: api/Calculator
@@ -31,6 +33,42 @@ namespace RestCalculatorService.Controllers
         public int PostAdd([FromBody]Data data)
         {
             return data.A + data.B;
+        }
+
+        //Andet eksempel på en URI med variabler, der kan bruges i en browser (fordi kun GET virker i browser da vi ikke kan lave body)
+        // GET: api/Calculator
+        [HttpGet("Add/{x}/{y}", Name = "Add")]
+        public int GetAdd(int x, int y)
+        {
+            return x + y;
+        }
+
+        //Tredje eksempel for api/Calculator?Operation=Add (hvor Operation er en String property i vores QueryData klasse)
+        // POST: api/Calculator
+        [HttpPost("Add", Name = "Add")]
+        public int PostGeneric([FromBody]Data data, [FromQuery] QueryData qData)
+        {
+            if (qData.Operation == "Add")
+            {
+                return data.A + data.B;
+            }
+
+            if (qData.Operation == "Sub")
+            {
+                return data.A + data.B;
+            }
+
+            if (qData.Operation == "Mul")
+            {
+                return data.A + data.B;
+            }
+
+            if (qData.Operation == "Div")
+            {
+                return data.A + data.B;
+            }
+
+            throw new ArgumentException("Operation not supported");
         }
 
         // POST: api/Calculator
